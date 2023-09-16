@@ -17,6 +17,8 @@ class CountryCodePicker extends StatefulWidget {
   final List<String> favorite;
   final TextStyle? textStyle;
   final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? flagPadding;
+  final EdgeInsetsGeometry? dropdownPadding;
   final bool showCountryOnly;
   final InputDecoration searchDecoration;
   final TextStyle? searchStyle;
@@ -90,6 +92,8 @@ class CountryCodePicker extends StatefulWidget {
     this.favorite = const [],
     this.textStyle,
     this.padding = const EdgeInsets.all(8.0),
+    this.flagPadding,
+    this.dropdownPadding,
     this.showCountryOnly = false,
     this.searchDecoration = const InputDecoration(),
     this.searchStyle,
@@ -181,7 +185,8 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                         ? Clip.none
                         : Clip.hardEdge,
                     decoration: widget.flagDecoration,
-                    margin: widget.alignLeft
+                    margin: widget.flagPadding ??
+                    widget.alignLeft
                         ? const EdgeInsets.only(right: 16.0, left: 8.0)
                         : const EdgeInsets.only(right: 16.0),
                     child: Image.asset(
@@ -208,7 +213,8 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                   flex: widget.alignLeft ? 0 : 1,
                   fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
                   child: Padding(
-                      padding: widget.alignLeft
+                      padding: widget.dropdownPadding ??
+                      widget.alignLeft
                           ? const EdgeInsets.only(right: 16.0, left: 8.0)
                           : const EdgeInsets.only(right: 16.0),
                       child: Icon(
